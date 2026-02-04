@@ -1,121 +1,187 @@
-import 'package:flutter/material.dart';
+/// Main entry point for the Notes application.
+///
+/// Initializes the database, providers, theme, and sets up the main navigation.
+library;
 
-void main() {
-  runApp(const MyApp());
+import 'dart:developer' as developer;
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'providers/notes_provider.dart';
+import 'providers/theme_provider.dart';
+import 'screens/graph_screen.dart';
+import 'screens/home_screen.dart';
+import 'screens/note_editor_screen.dart';
+import 'screens/settings_screen.dart';
+import 'services/database_service.dart';
+import 'themes/app_theme.dart';
+import 'widgets/bottom_nav_bar.dart';
+
+/// Main entry point.
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize database
+  try {
+    await DatabaseService.instance.database;
+    developer.log('Database initialized successfully', name: 'Main');
+  } catch (e) {
+    developer.log('Failed to initialize database: $e', name: 'Main', error: e);
+    // Continue anyway - the app will show error states
+  }
+
+  // Initialize SharedPreferences
+  final sharedPreferences = await SharedPreferences.getInstance();
+
+  runApp(
+    ProviderScope(
+      overrides: [
+        sharedPreferencesProvider.overrideWithValue(sharedPreferences),
+      ],
+      child: const NotesApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+/// Root application widget.
+class NotesApp extends ConsumerWidget {
+  /// Creates a [NotesApp] widget.
+  const NotesApp({super.key});
 
-  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeMode = ref.watch(themeModeProvider);
+
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      title: 'Notes',
+      debugShowCheckedModeBanner: false,
+
+      // Theme configuration
+      theme: AppTheme.light,
+      darkTheme: AppTheme.dark,
+      themeMode: themeMode,
+
+      // Page transitions
+      onGenerateRoute: (settings) {
+        return _buildRoute(settings);
+      },
+
+      // Home is the main shell with navigation
+      home: const MainNavigationShell(),
+    );
+  }
+
+  /// Builds routes with Cupertino transitions.
+  Route<dynamic>? _buildRoute(RouteSettings settings) {
+    Widget page;
+
+    switch (settings.name) {
+      case '/editor':
+        final noteId = settings.arguments as String?;
+        page = NoteEditorScreen(noteId: noteId ?? '', onSave: () {});
+        break;
+      default:
+        return null;
+    }
+
+    return CupertinoPageRoute<dynamic>(
+      builder: (_) => page,
+      settings: settings,
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+/// Main navigation shell with bottom navigation bar.
+class MainNavigationShell extends ConsumerStatefulWidget {
+  /// Creates a [MainNavigationShell] widget.
+  const MainNavigationShell({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  ConsumerState<MainNavigationShell> createState() =>
+      _MainNavigationShellState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _MainNavigationShellState extends ConsumerState<MainNavigationShell> {
+  int _selectedIndex = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+  // Page controller for smooth transitions
+  late PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+
+    // Trigger initial notes load
+    Future.microtask(() {
+      ref.read(notesProvider);
     });
   }
 
   @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: .center,
-          children: [
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  void _onTabChange(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    _pageController.animateToPage(
+      index,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  void _navigateToEditor(String? noteId) {
+    Navigator.of(context).push(
+      CupertinoPageRoute<void>(
+        builder: (context) => NoteEditorScreen(
+          noteId: noteId ?? '',
+          onSave: () => Navigator.of(context).pop(),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Watch for error messages and show snackbar
+    ref.listen<String?>(errorMessageProvider, (previous, next) {
+      if (next != null && next.isNotEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(next),
+            behavior: SnackBarBehavior.floating,
+            action: SnackBarAction(
+              label: 'Dismiss',
+              onPressed: () {
+                ref.read(notesProvider.notifier).clearError();
+              },
+            ),
+          ),
+        );
+      }
+    });
+
+    return Scaffold(
+      body: PageView(
+        controller: _pageController,
+        physics: const NeverScrollableScrollPhysics(),
+        children: [
+          HomeScreen(onNavigateToEditor: _navigateToEditor),
+          GraphScreen(onNodeTap: _navigateToEditor),
+          const SettingsScreen(),
+        ],
+      ),
+      bottomNavigationBar: BottomNavBar(
+        selectedIndex: _selectedIndex,
+        onTabChange: _onTabChange,
       ),
     );
   }

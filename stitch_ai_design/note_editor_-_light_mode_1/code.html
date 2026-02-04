@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Home Screen - Light Mode</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "cream": "#FDFBF7",
+                        "teal-primary": "#008080",
+                        "teal-soft": "#E6F2F2",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "12": "12px",
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            user-select: none;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF7;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-cream font-display text-slate-900 min-h-screen pb-32">
+<header class="sticky top-0 z-50 bg-cream/95 backdrop-blur-sm px-4 pt-4 pb-2">
+<div class="flex items-center justify-between mb-4">
+<h1 class="text-3xl font-bold text-slate-900 tracking-tight">My Notes</h1>
+<div class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden border border-slate-100">
+<img alt="User" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9lPQKGNpW1O8Y_LpeIqB_Xynqo7rnrmeo1cWxtUPctHOTPfTORYECDwm9bMp94rmHmQBGkEd071HJ8S1we3p9hK3PpvB9u8D_V10XtVqX1mPgFIIzJ-Bpxt3wM-TTIMDcNF_c5Sbholde8iRvqpKzxwgVA4w4kwKjkbVlF7MgJK24pRHzqhKRCSPKWmb23v05iqIWwQo4J_SuPQGFz240T1AzH8hL2uUgccE1XoauPcTRPeo-4Zgg9rW3fGH8Udsu3j-LZ3DrNew"/>
+</div>
+</div>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full bg-slate-100 border-none rounded-2xl py-3 pl-11 pr-4 focus:ring-2 focus:ring-teal-primary/20 text-slate-700 placeholder-slate-400 transition-all" placeholder="Search your notes..." type="text"/>
+</div>
+</header>
+<main class="px-4 py-2 space-y-3">
+<div class="bg-white p-4 rounded-12 shadow-sm border border-slate-100 active:scale-[0.98] transition-transform cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-lg text-slate-900 leading-tight">Meeting Notes</h3>
+<span class="text-xs text-slate-400 font-medium">10:45 AM</span>
+</div>
+<p class="text-slate-500 text-sm line-clamp-2 leading-relaxed">
+                Today's discussion focused on the new design system rollout. We need to finalize the component library by next Friday.
+            </p>
+<div class="mt-3 flex gap-2">
+<span class="px-2 py-1 bg-teal-soft text-teal-primary text-[10px] font-bold rounded uppercase tracking-wider">Work</span>
+</div>
+</div>
+<div class="bg-white p-4 rounded-12 shadow-sm border border-slate-100 active:scale-[0.98] transition-transform cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-lg text-slate-900 leading-tight">Grocery List</h3>
+<span class="text-xs text-slate-400 font-medium">Oct 24</span>
+</div>
+<p class="text-slate-500 text-sm line-clamp-2 leading-relaxed">
+                Almond milk, avocados, whole grain bread, organic honey, and some fresh basil for the pasta tonight.
+            </p>
+</div>
+<div class="bg-white p-4 rounded-12 shadow-sm border border-slate-100 active:scale-[0.98] transition-transform cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-lg text-slate-900 leading-tight">Project Idea: Smart Garden</h3>
+<span class="text-xs text-slate-400 font-medium">Oct 22</span>
+</div>
+<p class="text-slate-500 text-sm line-clamp-2 leading-relaxed">
+                Automated watering system using Raspberry Pi and soil moisture sensors. Need to buy the pump kit.
+            </p>
+<div class="mt-3 flex gap-2">
+<span class="px-2 py-1 bg-teal-soft text-teal-primary text-[10px] font-bold rounded uppercase tracking-wider">Side Project</span>
+</div>
+</div>
+<div class="bg-white p-4 rounded-12 shadow-sm border border-slate-100 active:scale-[0.98] transition-transform cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-lg text-slate-900 leading-tight">Workout Routine</h3>
+<span class="text-xs text-slate-400 font-medium">Oct 20</span>
+</div>
+<p class="text-slate-500 text-sm line-clamp-2 leading-relaxed">
+                Monday: Upper body push. Tuesday: Lower body. Wednesday: Rest. Thursday: Upper body pull.
+            </p>
+</div>
+<div class="bg-white p-4 rounded-12 shadow-sm border border-slate-100 active:scale-[0.98] transition-transform cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-lg text-slate-900 leading-tight">Books to Read</h3>
+<span class="text-xs text-slate-400 font-medium">Oct 18</span>
+</div>
+<p class="text-slate-500 text-sm line-clamp-2 leading-relaxed">
+                1. Atomic Habits by James Clear. 2. The Psychology of Money. 3. Deep Work by Cal Newport.
+            </p>
+</div>
+</main>
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-teal-primary text-white rounded-full shadow-lg shadow-teal-primary/30 flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-100 px-6 pt-3 pb-8 flex justify-between items-center z-50">
+<button class="flex flex-col items-center gap-1 text-teal-primary">
+<span class="material-symbols-outlined filled">home</span>
+<span class="text-[10px] font-bold">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">bubble_chart</span>
+<span class="text-[10px] font-bold">Graph</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold">Settings</span>
+</button>
+</nav>
+<div class="fixed bottom-1 left-1/2 -translate-x-1/2 w-32 h-1 bg-slate-200 rounded-full z-[60]"></div>
+
+</body></html>

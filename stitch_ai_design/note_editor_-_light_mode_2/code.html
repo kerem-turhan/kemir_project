@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Home Screen - Dark Mode</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2DD4BF", // Teal
+                        "deep-charcoal": "#121212",
+                        "card-charcoal": "#1E1E1E",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            user-select: none;
+        }
+        .fill-1 {
+            font-variation-settings: 'FILL' 1;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212;
+        }.no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-deep-charcoal text-white font-display min-h-screen flex flex-col">
+<header class="sticky top-0 z-50 bg-deep-charcoal/80 backdrop-blur-md border-b border-white/5">
+<div class="flex items-center justify-between px-4 h-16">
+<h1 class="text-2xl font-bold tracking-tight">All Notes</h1>
+<div class="flex items-center gap-4">
+<button class="p-2 text-white/70 hover:text-white transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs font-bold border border-primary/30">
+                    JD
+                </div>
+</div>
+</div>
+</header>
+<main class="flex-1 px-4 py-4 space-y-4 max-w-screen-md mx-auto w-full">
+<div class="bg-card-charcoal p-4 rounded-xl border border-white/5 shadow-lg">
+<h3 class="text-lg font-semibold mb-2">Meeting Notes</h3>
+<p class="text-white/60 text-sm line-clamp-2 leading-relaxed">
+                Today's discussion focused on the new design system rollout. We need to finalize the component library by next Friday.
+            </p>
+<div class="mt-4 flex items-center justify-between">
+<span class="text-xs text-white/40">Oct 24 • Work</span>
+<span class="material-symbols-outlined text-sm text-white/40">push_pin</span>
+</div>
+</div>
+<div class="bg-card-charcoal p-4 rounded-xl border border-white/5 shadow-lg">
+<h3 class="text-lg font-semibold mb-2">Grocery List</h3>
+<p class="text-white/60 text-sm line-clamp-2 leading-relaxed">
+                Milk, eggs, avocado, whole wheat bread, almond milk, greek yogurt, fresh berries...
+            </p>
+<div class="mt-4 flex items-center justify-between">
+<span class="text-xs text-white/40">Oct 23 • Personal</span>
+<div class="flex -space-x-2">
+<div class="w-5 h-5 rounded-full bg-slate-700 border border-deep-charcoal"></div>
+<div class="w-5 h-5 rounded-full bg-slate-600 border border-deep-charcoal text-[8px] flex items-center justify-center">+2</div>
+</div>
+</div>
+</div>
+<div class="bg-card-charcoal p-4 rounded-xl border border-white/5 shadow-lg">
+<div class="flex gap-4">
+<div class="flex-1">
+<h3 class="text-lg font-semibold mb-2">Project Ideas</h3>
+<p class="text-white/60 text-sm line-clamp-2 leading-relaxed">
+                        Brainstorming for the next mobile app concept. Focused on local-first data architecture.
+                    </p>
+</div>
+<div class="w-16 h-16 rounded-lg bg-cover bg-center shrink-0 bg-white/5" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBbL_HXK_zzGAAFIfh1Z1e2azvpV3EryuBAZ4eLtspjDRZe78cFIiS7VAp4W6TyYD5K5OeRM5xwxWnLstDAEEcfNh38lZI6P0LHQq7rewUDbpzpo2k-cKPjQpwGCEs1eWMX0Ya1QTMvyqjSvPvKJ48X9wAOin-cABoF8NiyG-YqeE0602AtOoDQqkQx8I3iG_4sp9pidpPi7IVgeyh_mo9VilLyLjhU6rqoNruMbgno6MgihkhlGnhrSlxO5cn6mnNMGvbXU8OXMDs'); opacity: 0.7;"></div>
+</div>
+<div class="mt-4 flex items-center justify-between">
+<span class="text-xs text-white/40">Oct 22 • Side Project</span>
+<span class="material-symbols-outlined text-sm text-white/40">image</span>
+</div>
+</div>
+<div class="bg-card-charcoal p-4 rounded-xl border border-white/5 shadow-lg opacity-80">
+<h3 class="text-lg font-semibold mb-2">Gym Workout</h3>
+<p class="text-white/60 text-sm line-clamp-2 leading-relaxed">
+                Bench press 5x5, Squats 3x10, Pull ups 4x8. Remember to stretch after.
+            </p>
+<div class="mt-4 flex items-center justify-between">
+<span class="text-xs text-white/40">Oct 21 • Health</span>
+</div>
+</div>
+<div class="h-24"></div>
+</main>
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-primary text-deep-charcoal rounded-full shadow-2xl flex items-center justify-center hover:scale-105 active:scale-95 transition-transform z-40">
+<span class="material-symbols-outlined font-bold">add</span>
+</button>
+<nav class="fixed bottom-0 left-0 right-0 bg-deep-charcoal/95 backdrop-blur-lg border-t border-white/5 pb-8 pt-3 z-50">
+<div class="max-w-screen-md mx-auto flex justify-around items-center px-6">
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-primary fill-1">home</span>
+<span class="text-[10px] font-medium text-primary">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-white/40 group-hover:text-white/60 transition-colors">bubble_chart</span>
+<span class="text-[10px] font-medium text-white/40 group-hover:text-white/60 transition-colors">Graph</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-white/40 group-hover:text-white/60 transition-colors">settings</span>
+<span class="text-[10px] font-medium text-white/40 group-hover:text-white/60 transition-colors">Settings</span>
+</button>
+</div>
+<div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-white/20 rounded-full"></div>
+</nav>
+
+</body></html>

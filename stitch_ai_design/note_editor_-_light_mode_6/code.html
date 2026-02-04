@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Note Editor - Dark Mode</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2DD4BF","background-dark": "#121212",
+                        "surface-dark": "#1E1E1E",
+                        "border-dark": "#2A2A2A",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            user-select: none;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display text-slate-100 min-h-screen">
+<header class="sticky top-0 z-50 bg-[#121212]/90 backdrop-blur-md border-b border-border-dark">
+<div class="flex items-center justify-between px-4 py-3">
+<div class="flex items-center gap-1 text-primary cursor-pointer">
+<span class="material-symbols-outlined">chevron_left</span>
+<span class="text-lg font-medium">Notes</span>
+</div>
+<h2 class="text-white text-base font-semibold leading-tight tracking-tight">Meeting Notes</h2>
+<div class="flex items-center justify-end">
+<button class="text-primary text-lg font-semibold tracking-tight hover:opacity-80 transition-opacity">Save</button>
+</div>
+</div>
+</header>
+<main class="max-w-screen-md mx-auto">
+<div class="px-4 pt-6 pb-2">
+<input class="w-full bg-transparent border-none focus:ring-0 text-3xl font-bold p-0 text-white placeholder:text-slate-600" placeholder="Title" type="text" value="Meeting Notes"/>
+</div>
+<div class="px-2 py-1 sticky top-[57px] bg-[#121212] z-40 border-b border-border-dark/50">
+<div class="flex items-center gap-1 overflow-x-auto no-scrollbar py-2">
+<button class="p-2 text-slate-400 hover:bg-surface-dark rounded-lg">
+<span class="material-symbols-outlined">format_bold</span>
+</button>
+<button class="p-2 text-slate-400 hover:bg-surface-dark rounded-lg">
+<span class="material-symbols-outlined">format_italic</span>
+</button>
+<button class="p-2 text-slate-400 hover:bg-surface-dark rounded-lg">
+<span class="material-symbols-outlined">format_list_bulleted</span>
+</button>
+<button class="p-2 text-slate-400 hover:bg-surface-dark rounded-lg">
+<span class="material-symbols-outlined">image</span>
+</button>
+<div class="w-px h-6 bg-border-dark mx-1"></div>
+<button class="p-2 text-slate-400 hover:bg-surface-dark rounded-lg">
+<span class="material-symbols-outlined">format_quote</span>
+</button>
+<button class="p-2 text-slate-400 hover:bg-surface-dark rounded-lg">
+<span class="material-symbols-outlined">link</span>
+</button>
+</div>
+</div>
+<div class="px-4 py-4 space-y-6 pb-32">
+<div class="text-slate-300 text-lg leading-relaxed focus:outline-none min-h-[100px]" contenteditable="true">
+            Today's discussion focused on the new design system rollout. We need to finalize the component library by next Friday. 
+            <br/><br/>
+            Key takeaways:
+            <ul class="list-disc pl-5 mt-2 space-y-2">
+<li>Update primary brand colors to <span class="text-primary">#2DD4BF</span></li>
+<li>Ensure all components support dark mode variants</li>
+<li>Finalize the iconography set using Material Symbols</li>
+</ul>
+</div>
+<div class="relative group">
+<div class="w-full overflow-hidden bg-surface-dark rounded-xl aspect-[16/10] flex border border-border-dark">
+<div class="w-full bg-center bg-no-repeat bg-cover aspect-auto rounded-none flex-1 opacity-80" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBbL_HXK_zzGAAFIfh1Z1e2azvpV3EryuBAZ4eLtspjDRZe78cFIiS7VAp4W6TyYD5K5OeRM5xwxWnLstDAEEcfNh38lZI6P0LHQq7rewUDbpzpo2k-cKPjQpwGCEs1eWMX0Ya1QTMvyqjSvPvKJ48X9wAOin-cABoF8NiyG-YqeE0602AtOoDQqkQx8I3iG_4sp9pidpPi7IVgeyh_mo9VilLyLjhU6rqoNruMbgno6MgihkhlGnhrSlxO5cn6mnNMGvbXU8OXMDs");'>
+</div>
+</div>
+<button class="absolute top-3 right-3 bg-black/70 backdrop-blur-sm text-white rounded-full p-1 hover:bg-black transition-all flex items-center justify-center border border-white/10">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+<div class="text-slate-300 text-lg leading-relaxed focus:outline-none" contenteditable="true">
+            The image above shows the updated office layout where the collaboration sessions will take place. We should consider scheduling the next sync here to test the environment.
+        </div>
+</div>
+</main>
+<nav class="fixed bottom-0 left-0 right-0 bg-[#1A1A1A]/95 backdrop-blur-xl border-t border-border-dark pb-8 pt-2 px-6 z-50">
+<div class="flex items-center justify-around max-w-screen-md mx-auto">
+<button class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[28px]">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">hub</span>
+<span class="text-[10px] font-medium">Graph</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[28px]">settings</span>
+<span class="text-[10px] font-medium">Settings</span>
+</button>
+</div>
+</nav>
+<div class="fixed bottom-0 left-0 right-0 h-1 flex justify-center items-end pb-2 pointer-events-none z-[60]">
+<div class="w-32 h-1 bg-white/20 rounded-full"></div>
+</div>
+
+</body></html>

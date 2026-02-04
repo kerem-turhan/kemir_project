@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Settings - Dark Mode</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2dd4bf", // Teal accent for the charcoal theme
+                        "charcoal": "#121212",
+                        "surface": "#1e1e1e",
+                        "border-charcoal": "#2a2a2a"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            user-select: none;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-charcoal text-slate-100 min-h-screen flex flex-col">
+<header class="sticky top-0 z-50 bg-charcoal/90 backdrop-blur-md border-b border-border-charcoal">
+<div class="flex items-center justify-between px-4 h-14">
+<div class="w-10"></div>
+<h1 class="text-white text-lg font-semibold tracking-tight">Settings</h1>
+<div class="w-10 flex justify-end">
+<button class="text-primary font-medium">Done</button>
+</div>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto pb-32">
+<div class="mt-6 px-4">
+<h2 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 ml-4">Account</h2>
+<div class="bg-surface rounded-2xl overflow-hidden border border-border-charcoal">
+<div class="flex items-center gap-4 px-4 py-3 active:bg-white/5 cursor-pointer transition-colors">
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div class="flex-1">
+<div class="text-white font-medium">Alex Rivera</div>
+<div class="text-sm text-slate-400">alex.rivera@example.com</div>
+</div>
+<span class="material-symbols-outlined text-slate-600">chevron_right</span>
+</div>
+</div>
+</div>
+<div class="mt-8 px-4">
+<h2 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 ml-4">App Settings</h2>
+<div class="bg-surface rounded-2xl overflow-hidden border border-border-charcoal divide-y divide-border-charcoal">
+<div class="flex items-center gap-4 px-4 py-3 active:bg-white/5 cursor-pointer">
+<span class="material-symbols-outlined text-primary">palette</span>
+<div class="flex-1 text-white">Appearance</div>
+<div class="flex items-center gap-1 text-slate-400">
+<span class="text-sm">Dark</span>
+<span class="material-symbols-outlined text-slate-600">chevron_right</span>
+</div>
+</div>
+<div class="flex items-center gap-4 px-4 py-3 active:bg-white/5 cursor-pointer">
+<span class="material-symbols-outlined text-primary">notifications</span>
+<div class="flex-1 text-white">Notifications</div>
+<span class="material-symbols-outlined text-slate-600">chevron_right</span>
+</div>
+<div class="flex items-center gap-4 px-4 py-3 active:bg-white/5 cursor-pointer">
+<span class="material-symbols-outlined text-primary">lock</span>
+<div class="flex-1 text-white">Privacy &amp; Security</div>
+<span class="material-symbols-outlined text-slate-600">chevron_right</span>
+</div>
+</div>
+</div>
+<div class="mt-8 px-4">
+<h2 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 ml-4">Support</h2>
+<div class="bg-surface rounded-2xl overflow-hidden border border-border-charcoal divide-y divide-border-charcoal">
+<div class="flex items-center gap-4 px-4 py-3 active:bg-white/5 cursor-pointer">
+<span class="material-symbols-outlined text-slate-400">help</span>
+<div class="flex-1 text-white">Help Center</div>
+<span class="material-symbols-outlined text-slate-600 text-sm">open_in_new</span>
+</div>
+<div class="flex items-center gap-4 px-4 py-3 active:bg-white/5 cursor-pointer">
+<span class="material-symbols-outlined text-slate-400">info</span>
+<div class="flex-1 text-white">About</div>
+<div class="flex items-center gap-1 text-slate-400">
+<span class="text-sm">v2.4.0</span>
+<span class="material-symbols-outlined text-slate-600">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-10 px-4 text-center">
+<button class="text-red-400 font-medium py-3 px-6 rounded-xl active:bg-red-400/10 transition-colors">
+                Sign Out
+            </button>
+</div>
+</main>
+<nav class="fixed bottom-0 left-0 right-0 bg-charcoal/80 backdrop-blur-xl border-t border-border-charcoal pb-6 pt-2">
+<div class="flex justify-around items-center px-4">
+<button class="flex flex-col items-center gap-1 p-2 text-slate-500">
+<span class="material-symbols-outlined">description</span>
+<span class="text-[10px] font-medium">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 p-2 text-slate-500">
+<span class="material-symbols-outlined">hub</span>
+<span class="text-[10px] font-medium">Graph</span>
+</button>
+<button class="flex flex-col items-center gap-1 p-2 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="text-[10px] font-medium">Settings</span>
+</button>
+</div>
+<div class="flex justify-center mt-2">
+<div class="w-32 h-1.5 bg-white/20 rounded-full"></div>
+</div>
+</nav>
+
+</body></html>
